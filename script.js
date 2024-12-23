@@ -1,8 +1,21 @@
 const tilesData = [
     { en: "consistent", pl: "konsekwentny" },
     { en: "tenacious", pl: "wytrwały" },
-    { en: "girly", pl: "dziewczęca" }
+    { en: "girly", pl: "dziewczęca" },
+    { en: "poetic", pl: "poetycki" },
+    { en: "narrative", pl: "narracyjny" },
+    { en: "rhythm", pl: "rytm" },
+    { en: "lyric", pl: "tekst piosenki" },
+    { en: "brew", pl: "parzenie" },
+    { en: "ceremony", pl: "ceremonia" },
+    { en: "compassionate", pl: "współczujący" },
+    { en: "authentic", pl: "autentyczny" },
+    { en: "pride", pl: "duma" },
+    { en: "equality", pl: "równość" },
+    { en: "delicate", pl: "delikatny" },
+    { en: "inspire", pl: "inspirować" }
 ];
+
 
 let firstTile = null;
 let secondTile = null;
