@@ -12,15 +12,15 @@ h1 {
 
 #game-board {
     display: grid;
-    grid-template-columns: repeat(2, 100px);
+    grid-template-columns: repeat(2, 120px);
     gap: 10px;
     justify-content: center;
     margin: 20px auto;
 }
 
 .card {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     background-color: #0073e6;
     border: 2px solid #fff;
     border-radius: 5px;
@@ -28,17 +28,16 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 18px;
     color: #fff;
     font-weight: bold;
-    text-transform: capitalize;
     user-select: none;
     transition: transform 0.3s, background-color 0.3s;
     transform: rotateY(0);
     perspective: 1000px;
 }
 
-.card.active {
+.card.active, .card.matched {
     background-color: #fff;
     color: #0073e6;
     transform: rotateY(180deg);
@@ -64,3 +63,4 @@ button {
 button:hover {
     background-color: #005bb5;
 }
+
