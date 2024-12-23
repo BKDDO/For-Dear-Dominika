@@ -2,30 +2,32 @@ const gameBoard = document.getElementById('game-board');
 const playAgainButton = document.getElementById('play-again');
 
 const cardValues = [
-    { word: 'consistent', pair: 'spójny' },
-    { word: 'tenacious', pair: 'wytrwały' }
+    { id: 1, text: 'consistent' },
+    { id: 2, text: 'spójny' },
+    { id: 3, text: 'tenacious' },
+    { id: 4, text: 'wytrwały' }
 ];
-let cards = [];
+
+let shuffledCards = [];
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 
 // Initialize the game
 function initGame() {
-    cards = [...cardValues, ...cardValues]
-        .map((card, index) => ({ ...card, id: index }))
+    shuffledCards = [...cardValues, ...cardValues]
         .sort(() => Math.random() - 0.5);
-    
+
     gameBoard.innerHTML = '';
     firstCard = null;
     secondCard = null;
     lockBoard = false;
 
-    cards.forEach(card => {
+    shuffledCards.forEach((card, index) => {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card');
-        cardElement.dataset.word = card.word;
-        cardElement.dataset.pair = card.pair;
+        cardElement.dataset.id = card.id;
+        cardElement.textContent = card.text; // Start hidden (CSS hides the text)
         cardElement.addEventListener('click', flipCard);
         gameBoard.appendChild(cardElement);
     });
@@ -36,7 +38,7 @@ function flipCard() {
     if (lockBoard || this.classList.contains('active') || this.classList.contains('matched')) return;
 
     this.classList.add('active');
-    this.textContent = this.dataset.word || this.dataset.pair;
+    this.style.color = '#0073e6';
 
     if (!firstCard) {
         firstCard = this;
@@ -49,13 +51,9 @@ function flipCard() {
     checkMatch();
 }
 
-// Check for a match
+// Check if cards match
 function checkMatch() {
-    const isMatch =
-        firstCard.dataset.word === secondCard.dataset.pair ||
-        firstCard.dataset.pair === secondCard.dataset.word;
-
-    if (isMatch) {
+    if (firstCard.dataset.id === secondCard.dataset.id) {
         firstCard.classList.add('matched');
         secondCard.classList.add('matched');
         firstCard.removeEventListener('click', flipCard);
@@ -65,8 +63,8 @@ function checkMatch() {
         setTimeout(() => {
             firstCard.classList.remove('active');
             secondCard.classList.remove('active');
-            firstCard.textContent = '';
-            secondCard.textContent = '';
+            firstCard.style.color = 'transparent';
+            secondCard.style.color = 'transparent';
             resetTurn();
         }, 1000);
     }
@@ -79,8 +77,9 @@ function resetTurn() {
     lockBoard = false;
 }
 
-// Add functionality to Play Again button
+// Reset game
 playAgainButton.addEventListener('click', initGame);
 
-// Start the game on page load
+// Start game on load
 initGame();
+
