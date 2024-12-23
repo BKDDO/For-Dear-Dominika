@@ -16,12 +16,12 @@ body {
 }
 
 .tile {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 16px;
     background-color: #007bff;
     color: transparent;
     border: 2px solid #0056b3;
