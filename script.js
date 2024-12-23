@@ -1,5 +1,5 @@
 const tilesData = [
-    { en: "consistent", pl: "spójny" },
+    { en: "consistent", pl: "konsekwentny" },
     { en: "tenacious", pl: "wytrwały" },
     { en: "girly", pl: "dziewczęca" }
 ];
