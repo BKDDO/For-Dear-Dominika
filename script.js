@@ -11,6 +11,10 @@ let lockBoard = false;
 function initGame() {
     shuffledCards = [...cardValues].sort(() => Math.random() - 0.5);
     gameBoard.innerHTML = '';
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+
     shuffledCards.forEach((value) => {
         const card = document.createElement('div');
         card.classList.add('card');
@@ -44,8 +48,8 @@ function checkMatch() {
     if (firstCard.dataset.value === secondCard.dataset.value) {
         firstCard.classList.add('matched');
         secondCard.classList.add('matched');
-        firstCard.removeEventListener('click', flipCard); // Disable further clicks
-        secondCard.removeEventListener('click', flipCard); // Disable further clicks
+        firstCard.removeEventListener('click', flipCard);
+        secondCard.removeEventListener('click', flipCard);
         resetTurn();
     } else {
         setTimeout(() => {
