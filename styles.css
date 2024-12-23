@@ -7,6 +7,7 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
+    overflow: hidden; /* Zapobiega przewijaniu strony */
 }
 
 .game-board {
@@ -16,6 +17,8 @@ body {
     gap: 20px; /* Odstępy między kafelkami */
     justify-content: center; /* Wyśrodkowanie planszy poziomo */
     align-items: center; /* Wyśrodkowanie planszy pionowo */
+    transform: scale(0.7); /* Skalowanie do 70% rozmiaru */
+    transform-origin: center; /* Skala względem środka planszy */
 }
 
 .tile {
@@ -47,6 +50,8 @@ body {
 
 .controls {
     margin-top: 20px; /* Odstęp od planszy gry */
+    transform: scale(0.7); /* Skalowanie przycisków razem z planszą */
+    transform-origin: center; /* Skala względem środka przycisków */
 }
 
 .controls button {
