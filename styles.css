@@ -12,7 +12,7 @@ body {
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(5, 120px); /* 5 kolumn na komputerze */
+    grid-template-columns: repeat(5, 120px); /* Domyślnie 5 kolumn */
     grid-gap: 20px; /* Odstępy między kafelkami */
     justify-content: center; /* Wyśrodkowanie planszy poziomo */
     align-items: center; /* Wyśrodkowanie planszy pionowo */
@@ -82,24 +82,24 @@ body {
 
 @media (max-width: 480px) { /* Telefony */
     .game-board {
-        grid-template-columns: repeat(3, 1fr); /* 3 kolumny */
+        grid-template-columns: repeat(4, 1fr); /* 4 kolumny na telefonach */
         gap: 10px; /* Mniejsze odstępy */
     }
     .tile {
-        width: 70px; /* Jeszcze mniejsze kafelki */
-        height: 70px;
-        font-size: 10px; /* Jeszcze mniejszy tekst */
+        width: 80px; /* Jeszcze mniejsze kafelki */
+        height: 80px;
+        font-size: 10px; /* Mniejszy tekst */
     }
 }
 
 @media (max-width: 360px) { /* Bardzo małe telefony */
     .game-board {
-        grid-template-columns: repeat(2, 1fr); /* 2 kolumny */
+        grid-template-columns: repeat(4, 1fr); /* Nadal 4 kolumny */
         gap: 5px; /* Bardzo małe odstępy */
     }
     .tile {
-        width: 60px; /* Najmniejsze kafelki */
-        height: 60px;
+        width: 70px; /* Najmniejsze kafelki */
+        height: 70px;
         font-size: 8px; /* Jeszcze mniejszy tekst */
     }
 }
