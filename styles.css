@@ -11,51 +11,54 @@ body {
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(2, 120px); /* Zwiększenie szerokości kolumn */
-    gap: 20px; /* Zwiększenie odstępów między kafelkami */
+    grid-template-columns: repeat(5, 120px); /* 5 kolumn */
+    grid-template-rows: repeat(6, 120px); /* 6 wierszy */
+    gap: 20px; /* Odstępy między kafelkami */
     justify-content: center; /* Wyśrodkowanie planszy poziomo */
     align-items: center; /* Wyśrodkowanie planszy pionowo */
 }
 
 .tile {
-    width: 120px; /* Zwiększona szerokość */
-    height: 120px; /* Zwiększona wysokość */
+    width: 120px; /* Szerokość kafelka */
+    height: 120px; /* Wysokość kafelka */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px; /* Mniejszy rozmiar tekstu */
-    background-color: #007bff;
-    color: transparent;
-    border: 2px solid #0056b3;
+    font-size: 14px; /* Rozmiar tekstu w kafelku */
+    background-color: #007bff; /* Kolor tła kafelka */
+    color: transparent; /* Domyślnie tekst jest ukryty */
+    border: 2px solid #0056b3; /* Obramowanie kafelka */
     cursor: pointer;
-    user-select: none;
+    user-select: none; /* Wyłączenie zaznaczania tekstu */
+    text-align: center; /* Wyśrodkowanie tekstu */
+    word-wrap: break-word; /* Pozwala łamać długie teksty */
 }
 
 .tile.revealed {
-    color: #fff;
-    background-color: #6c757d;
+    color: #fff; /* Kolor tekstu po odsłonięciu */
+    background-color: #6c757d; /* Kolor tła po odsłonięciu */
 }
 
 .tile.matched {
-    background-color: #28a745;
-    color: #fff;
-    cursor: default;
+    background-color: #28a745; /* Kolor tła dla dopasowanych kafelków */
+    color: #fff; /* Kolor tekstu dla dopasowanych kafelków */
+    cursor: default; /* Brak wskazania kliknięcia dla dopasowanych kafelków */
 }
 
 .controls {
-    margin-top: 20px;
+    margin-top: 20px; /* Odstęp od planszy gry */
 }
 
 .controls button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10px 20px; /* Wewnętrzne marginesy przycisku */
+    font-size: 16px; /* Rozmiar tekstu przycisku */
     cursor: pointer;
     border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
+    background-color: #007bff; /* Kolor tła przycisku */
+    color: white; /* Kolor tekstu przycisku */
+    border-radius: 5px; /* Zaokrąglenie rogów przycisku */
 }
 
 .controls button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Kolor tła przycisku po najechaniu */
 }
