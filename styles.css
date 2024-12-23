@@ -12,19 +12,20 @@ body {
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(5, 120px); /* Domyślnie 5 kolumn */
-    grid-gap: 20px; /* Odstępy między kafelkami */
+    grid-template-columns: repeat(4, 1fr); /* 4 kolumny */
+    grid-template-rows: repeat(4, 1fr); /* 4 wiersze */
+    gap: 20px; /* Odstępy między kafelkami */
     justify-content: center; /* Wyśrodkowanie planszy poziomo */
     align-items: center; /* Wyśrodkowanie planszy pionowo */
-    width: auto; /* Plansza dopasowuje się do rozmiaru elementów */
-    max-width: 100%; /* Plansza zajmuje maksymalnie całą szerokość */
+    width: 90%; /* Plansza zajmuje 90% szerokości ekranu */
+    max-width: 480px; /* Maksymalna szerokość planszy */
     padding: 10px; /* Odstępy wokół planszy */
     box-sizing: border-box; /* Uwzględnia padding w szerokości */
 }
 
 .tile {
-    width: 120px; /* Domyślna szerokość kafelka */
-    height: 120px; /* Domyślna wysokość kafelka */
+    width: 100%; /* Kafelki dostosowują się do szerokości kolumn */
+    aspect-ratio: 1; /* Kafelki zawsze są kwadratowe */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,35 +72,29 @@ body {
 /* Responsywność */
 @media (max-width: 768px) { /* Tablety i mniejsze ekrany */
     .game-board {
-        grid-template-columns: repeat(4, 1fr); /* 4 kolumny */
+        width: 100%; /* Plansza zajmuje całą szerokość ekranu */
+        gap: 15px; /* Mniejsze odstępy */
     }
     .tile {
-        width: 90px; /* Mniejsze kafelki */
-        height: 90px;
         font-size: 12px; /* Mniejszy tekst */
     }
 }
 
 @media (max-width: 480px) { /* Telefony */
     .game-board {
-        grid-template-columns: repeat(4, 1fr); /* 4 kolumny na telefonach */
-        gap: 10px; /* Mniejsze odstępy */
+        width: 100%; /* Plansza zajmuje całą szerokość ekranu */
+        gap: 10px; /* Bardzo małe odstępy */
     }
     .tile {
-        width: 80px; /* Jeszcze mniejsze kafelki */
-        height: 80px;
-        font-size: 10px; /* Mniejszy tekst */
+        font-size: 10px; /* Jeszcze mniejszy tekst */
     }
 }
 
 @media (max-width: 360px) { /* Bardzo małe telefony */
     .game-board {
-        grid-template-columns: repeat(4, 1fr); /* Nadal 4 kolumny */
-        gap: 5px; /* Bardzo małe odstępy */
+        gap: 5px; /* Minimalne odstępy */
     }
     .tile {
-        width: 70px; /* Najmniejsze kafelki */
-        height: 70px;
-        font-size: 8px; /* Jeszcze mniejszy tekst */
+        font-size: 8px; /* Najmniejszy tekst */
     }
 }
