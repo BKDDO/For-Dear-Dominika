@@ -17,8 +17,8 @@ const shuffleArray = (array) => {
 const createTile = (value, isEnglish) => {
     const tile = document.createElement("div");
     tile.classList.add("tile");
-    tile.dataset.value = isEnglish ? value.en : value.pl;
-    tile.textContent = isEnglish ? value.en : value.pl;
+    tile.dataset.value = value;
+    tile.textContent = value;
 
     tile.addEventListener("click", () => {
         if (isProcessing || tile.classList.contains("revealed") || tile.classList.contains("matched")) {
@@ -39,12 +39,13 @@ const createTile = (value, isEnglish) => {
 };
 
 const checkMatch = () => {
-    if (
-        tilesData.some(pair => 
+    const pair = tilesData.find(
+        pair => 
             (firstTile.dataset.value === pair.en && secondTile.dataset.value === pair.pl) ||
             (firstTile.dataset.value === pair.pl && secondTile.dataset.value === pair.en)
-        )
-    ) {
+    );
+
+    if (pair) {
         firstTile.classList.add("matched");
         secondTile.classList.add("matched");
         resetSelection();
@@ -68,15 +69,17 @@ const initializeGame = () => {
     const gameBoard = document.getElementById("gameBoard");
     gameBoard.innerHTML = "";
 
-    const tiles = tilesData.flatMap(pair => [
-        { value: pair.en, isEnglish: true },
-        { value: pair.pl, isEnglish: false }
-    ]);
+    const tiles = [
+        { value: tilesData[0].en, isEnglish: true },
+        { value: tilesData[0].pl, isEnglish: false },
+        { value: tilesData[1].en, isEnglish: true },
+        { value: tilesData[1].pl, isEnglish: false }
+    ];
 
     shuffleArray(tiles);
 
-    tiles.forEach(({ value, isEnglish }) => {
-        const tile = createTile({ en: value, pl: value }, isEnglish);
+    tiles.forEach(({ value }) => {
+        const tile = createTile(value);
         gameBoard.appendChild(tile);
     });
 };
