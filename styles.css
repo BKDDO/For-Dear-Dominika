@@ -16,19 +16,20 @@ body {
     grid-gap: 20px; /* Odstępy między kafelkami */
     justify-content: center; /* Wyśrodkowanie planszy poziomo */
     align-items: center; /* Wyśrodkowanie planszy pionowo */
-    width: 100%; /* Plansza dopasowuje się do szerokości ekranu */
-    max-width: 600px; /* Maksymalna szerokość planszy */
+    width: 90%; /* Plansza zajmuje 90% szerokości ekranu */
+    max-width: 480px; /* Maksymalna szerokość planszy */
     padding: 10px; /* Odstępy wokół planszy */
     box-sizing: border-box; /* Uwzględnia padding w szerokości */
 }
 
 .tile {
     width: 100%; /* Kafelki zajmują przestrzeń w kolumnach */
+    max-width: 80px; /* Ograniczenie maksymalnego rozmiaru kafelków */
     aspect-ratio: 1; /* Kafelki zawsze są kwadratowe */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px; /* Rozmiar tekstu w kafelku */
+    font-size: calc(1.5vw + 5px); /* Dynamiczne dopasowanie tekstu */
     background-color: #007bff; /* Kolor tła kafelka */
     color: transparent; /* Domyślnie tekst jest ukryty */
     border: 2px solid #0056b3; /* Obramowanie kafelka */
@@ -78,6 +79,7 @@ body {
 @media (max-width: 480px) { /* Telefony */
     .game-board {
         grid-template-columns: repeat(3, 1fr); /* 3 kolumny */
+        gap: 10px; /* Mniejsze odstępy */
     }
     .tile {
         font-size: 12px; /* Mniejszy tekst */
@@ -87,8 +89,10 @@ body {
 @media (max-width: 360px) { /* Bardzo małe telefony */
     .game-board {
         grid-template-columns: repeat(2, 1fr); /* 2 kolumny */
+        gap: 5px; /* Bardzo małe odstępy */
     }
     .tile {
+        max-width: 60px; /* Mniejsze kafelki */
         font-size: 10px; /* Jeszcze mniejszy tekst */
     }
 }
