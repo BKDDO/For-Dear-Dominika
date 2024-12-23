@@ -40,11 +40,10 @@ const createTile = (value, isEnglish) => {
 
 const checkMatch = () => {
     if (
-        (firstTile.dataset.value === secondTile.dataset.value) ||
-        (tilesData.some(pair => 
+        tilesData.some(pair => 
             (firstTile.dataset.value === pair.en && secondTile.dataset.value === pair.pl) ||
             (firstTile.dataset.value === pair.pl && secondTile.dataset.value === pair.en)
-        ))
+        )
     ) {
         firstTile.classList.add("matched");
         secondTile.classList.add("matched");
