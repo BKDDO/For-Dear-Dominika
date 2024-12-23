@@ -1,27 +1,33 @@
 const gameBoard = document.getElementById('game-board');
 const playAgainButton = document.getElementById('play-again');
 
-const cardValues = ['consistent', 'spójny', 'tenacious', 'wytrwały'];
-let shuffledCards = [];
+const cardValues = [
+    { word: 'consistent', pair: 'spójny' },
+    { word: 'tenacious', pair: 'wytrwały' }
+];
+let cards = [];
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 
 // Initialize the game
 function initGame() {
-    shuffledCards = [...cardValues].sort(() => Math.random() - 0.5);
+    cards = [...cardValues, ...cardValues]
+        .map((card, index) => ({ ...card, id: index }))
+        .sort(() => Math.random() - 0.5);
+    
     gameBoard.innerHTML = '';
     firstCard = null;
     secondCard = null;
     lockBoard = false;
 
-    shuffledCards.forEach((value) => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.dataset.value = value;
-        card.textContent = ''; // Hidden by default
-        card.addEventListener('click', flipCard);
-        gameBoard.appendChild(card);
+    cards.forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card');
+        cardElement.dataset.word = card.word;
+        cardElement.dataset.pair = card.pair;
+        cardElement.addEventListener('click', flipCard);
+        gameBoard.appendChild(cardElement);
     });
 }
 
@@ -30,7 +36,7 @@ function flipCard() {
     if (lockBoard || this.classList.contains('active') || this.classList.contains('matched')) return;
 
     this.classList.add('active');
-    this.textContent = this.dataset.value;
+    this.textContent = this.dataset.word || this.dataset.pair;
 
     if (!firstCard) {
         firstCard = this;
@@ -45,7 +51,11 @@ function flipCard() {
 
 // Check for a match
 function checkMatch() {
-    if (firstCard.dataset.value === secondCard.dataset.value) {
+    const isMatch =
+        firstCard.dataset.word === secondCard.dataset.pair ||
+        firstCard.dataset.pair === secondCard.dataset.word;
+
+    if (isMatch) {
         firstCard.classList.add('matched');
         secondCard.classList.add('matched');
         firstCard.removeEventListener('click', flipCard);
@@ -74,4 +84,3 @@ playAgainButton.addEventListener('click', initGame);
 
 // Start the game on page load
 initGame();
-
