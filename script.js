@@ -1,85 +1,74 @@
-const gameBoard = document.getElementById('game-board');
-const playAgainButton = document.getElementById('play-again');
+const tilesData = ["consistent", "spójny", "tenacious", "wytrwały"];
 
-const cardValues = [
-    { id: 1, text: 'consistent' },
-    { id: 2, text: 'spójny' },
-    { id: 3, text: 'tenacious' },
-    { id: 4, text: 'wytrwały' }
-];
+let firstTile = null;
+let secondTile = null;
+let isProcessing = false;
 
-let shuffledCards = [];
-let firstCard = null;
-let secondCard = null;
-let lockBoard = false;
-
-// Initialize the game
-function initGame() {
-    shuffledCards = [...cardValues, ...cardValues]
-        .sort(() => Math.random() - 0.5);
-
-    gameBoard.innerHTML = '';
-    firstCard = null;
-    secondCard = null;
-    lockBoard = false;
-
-    shuffledCards.forEach((card, index) => {
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('card');
-        cardElement.dataset.id = card.id;
-        cardElement.textContent = card.text; // Start hidden (CSS hides the text)
-        cardElement.addEventListener('click', flipCard);
-        gameBoard.appendChild(cardElement);
-    });
-}
-
-// Flip card function
-function flipCard() {
-    if (lockBoard || this.classList.contains('active') || this.classList.contains('matched')) return;
-
-    this.classList.add('active');
-    this.style.color = '#0073e6';
-
-    if (!firstCard) {
-        firstCard = this;
-        return;
+const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
+};
 
-    secondCard = this;
-    lockBoard = true;
+const createTile = (value) => {
+    const tile = document.createElement("div");
+    tile.classList.add("tile");
+    tile.dataset.value = value;
+    tile.textContent = value;
 
-    checkMatch();
-}
+    tile.addEventListener("click", () => {
+        if (isProcessing || tile.classList.contains("revealed") || tile.classList.contains("matched")) {
+            return;
+        }
 
-// Check if cards match
-function checkMatch() {
-    if (firstCard.dataset.id === secondCard.dataset.id) {
-        firstCard.classList.add('matched');
-        secondCard.classList.add('matched');
-        firstCard.removeEventListener('click', flipCard);
-        secondCard.removeEventListener('click', flipCard);
-        resetTurn();
+        tile.classList.add("revealed");
+
+        if (!firstTile) {
+            firstTile = tile;
+        } else if (!secondTile) {
+            secondTile = tile;
+            checkMatch();
+        }
+    });
+
+    return tile;
+};
+
+const checkMatch = () => {
+    if (firstTile.dataset.value === secondTile.dataset.value) {
+        firstTile.classList.add("matched");
+        secondTile.classList.add("matched");
+        resetSelection();
     } else {
+        isProcessing = true;
         setTimeout(() => {
-            firstCard.classList.remove('active');
-            secondCard.classList.remove('active');
-            firstCard.style.color = 'transparent';
-            secondCard.style.color = 'transparent';
-            resetTurn();
+            firstTile.classList.remove("revealed");
+            secondTile.classList.remove("revealed");
+            resetSelection();
         }, 1000);
     }
-}
+};
 
-// Reset turn
-function resetTurn() {
-    firstCard = null;
-    secondCard = null;
-    lockBoard = false;
-}
+const resetSelection = () => {
+    firstTile = null;
+    secondTile = null;
+    isProcessing = false;
+};
 
-// Reset game
-playAgainButton.addEventListener('click', initGame);
+const initializeGame = () => {
+    const gameBoard = document.getElementById("gameBoard");
+    gameBoard.innerHTML = "";
 
-// Start game on load
-initGame();
+    const tiles = [...tilesData, ...tilesData];
+    shuffleArray(tiles);
 
+    tiles.forEach(value => {
+        const tile = createTile(value);
+        gameBoard.appendChild(tile);
+    });
+};
+
+document.getElementById("resetButton").addEventListener("click", initializeGame);
+
+initializeGame();
