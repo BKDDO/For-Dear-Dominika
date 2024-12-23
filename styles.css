@@ -11,17 +11,19 @@ body {
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(2, 100px);
-    gap: 10px;
+    grid-template-columns: repeat(2, 120px); /* Zwiększenie szerokości kolumn */
+    gap: 20px; /* Zwiększenie odstępów między kafelkami */
+    justify-content: center; /* Wyśrodkowanie planszy poziomo */
+    align-items: center; /* Wyśrodkowanie planszy pionowo */
 }
 
 .tile {
-    width: 120px;
-    height: 120px;
+    width: 120px; /* Zwiększona szerokość */
+    height: 120px; /* Zwiększona wysokość */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 16px; /* Mniejszy rozmiar tekstu */
     background-color: #007bff;
     color: transparent;
     border: 2px solid #0056b3;
