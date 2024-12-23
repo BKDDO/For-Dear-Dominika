@@ -12,24 +12,23 @@ body {
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Domyślnie 5 kolumn */
+    grid-template-columns: repeat(5, 120px); /* 5 kolumn na komputerze */
     grid-gap: 20px; /* Odstępy między kafelkami */
     justify-content: center; /* Wyśrodkowanie planszy poziomo */
     align-items: center; /* Wyśrodkowanie planszy pionowo */
-    width: 90%; /* Plansza zajmuje 90% szerokości ekranu */
-    max-width: 480px; /* Maksymalna szerokość planszy */
+    width: auto; /* Plansza dopasowuje się do rozmiaru elementów */
+    max-width: 100%; /* Plansza zajmuje maksymalnie całą szerokość */
     padding: 10px; /* Odstępy wokół planszy */
     box-sizing: border-box; /* Uwzględnia padding w szerokości */
 }
 
 .tile {
-    width: 100%; /* Kafelki zajmują przestrzeń w kolumnach */
-    max-width: 80px; /* Ograniczenie maksymalnego rozmiaru kafelków */
-    aspect-ratio: 1; /* Kafelki zawsze są kwadratowe */
+    width: 120px; /* Domyślna szerokość kafelka */
+    height: 120px; /* Domyślna wysokość kafelka */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: calc(1.5vw + 5px); /* Dynamiczne dopasowanie tekstu */
+    font-size: 14px; /* Rozmiar tekstu w kafelku */
     background-color: #007bff; /* Kolor tła kafelka */
     color: transparent; /* Domyślnie tekst jest ukryty */
     border: 2px solid #0056b3; /* Obramowanie kafelka */
@@ -74,6 +73,11 @@ body {
     .game-board {
         grid-template-columns: repeat(4, 1fr); /* 4 kolumny */
     }
+    .tile {
+        width: 90px; /* Mniejsze kafelki */
+        height: 90px;
+        font-size: 12px; /* Mniejszy tekst */
+    }
 }
 
 @media (max-width: 480px) { /* Telefony */
@@ -82,7 +86,9 @@ body {
         gap: 10px; /* Mniejsze odstępy */
     }
     .tile {
-        font-size: 12px; /* Mniejszy tekst */
+        width: 70px; /* Jeszcze mniejsze kafelki */
+        height: 70px;
+        font-size: 10px; /* Jeszcze mniejszy tekst */
     }
 }
 
@@ -92,7 +98,8 @@ body {
         gap: 5px; /* Bardzo małe odstępy */
     }
     .tile {
-        max-width: 60px; /* Mniejsze kafelki */
-        font-size: 10px; /* Jeszcze mniejszy tekst */
+        width: 60px; /* Najmniejsze kafelki */
+        height: 60px;
+        font-size: 8px; /* Jeszcze mniejszy tekst */
     }
 }
