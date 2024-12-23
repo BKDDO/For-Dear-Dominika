@@ -6,14 +6,7 @@ const tilesData = [
     { en: "narrative", pl: "narracyjny" },
     { en: "rhythm", pl: "rytm" },
     { en: "lyric", pl: "tekst piosenki" },
-    { en: "brew", pl: "parzenie" },
-    { en: "ceremony", pl: "ceremonia" },
-    { en: "compassionate", pl: "współczujący" },
-    { en: "authentic", pl: "autentyczny" },
-    { en: "pride", pl: "duma" },
-    { en: "equality", pl: "równość" },
-    { en: "delicate", pl: "delikatny" },
-    { en: "inspire", pl: "inspirować" }
+    { en: "pride", pl: "duma" }
 ];
 
 
