@@ -1,4 +1,7 @@
-const tilesData = ["consistent", "spójny", "tenacious", "wytrwały"];
+const tilesData = [
+    { en: "consistent", pl: "spójny" },
+    { en: "tenacious", pl: "wytrwały" }
+];
 
 let firstTile = null;
 let secondTile = null;
@@ -11,11 +14,11 @@ const shuffleArray = (array) => {
     }
 };
 
-const createTile = (value) => {
+const createTile = (value, isEnglish) => {
     const tile = document.createElement("div");
     tile.classList.add("tile");
-    tile.dataset.value = value;
-    tile.textContent = value;
+    tile.dataset.value = isEnglish ? value.en : value.pl;
+    tile.textContent = isEnglish ? value.en : value.pl;
 
     tile.addEventListener("click", () => {
         if (isProcessing || tile.classList.contains("revealed") || tile.classList.contains("matched")) {
@@ -36,7 +39,13 @@ const createTile = (value) => {
 };
 
 const checkMatch = () => {
-    if (firstTile.dataset.value === secondTile.dataset.value) {
+    if (
+        (firstTile.dataset.value === secondTile.dataset.value) ||
+        (tilesData.some(pair => 
+            (firstTile.dataset.value === pair.en && secondTile.dataset.value === pair.pl) ||
+            (firstTile.dataset.value === pair.pl && secondTile.dataset.value === pair.en)
+        ))
+    ) {
         firstTile.classList.add("matched");
         secondTile.classList.add("matched");
         resetSelection();
@@ -60,11 +69,15 @@ const initializeGame = () => {
     const gameBoard = document.getElementById("gameBoard");
     gameBoard.innerHTML = "";
 
-    const tiles = [...tilesData, ...tilesData];
+    const tiles = tilesData.flatMap(pair => [
+        { value: pair.en, isEnglish: true },
+        { value: pair.pl, isEnglish: false }
+    ]);
+
     shuffleArray(tiles);
 
-    tiles.forEach(value => {
-        const tile = createTile(value);
+    tiles.forEach(({ value, isEnglish }) => {
+        const tile = createTile({ en: value, pl: value }, isEnglish);
         gameBoard.appendChild(tile);
     });
 };
