@@ -14,7 +14,7 @@ const shuffleArray = (array) => {
     }
 };
 
-const createTile = (value, isEnglish) => {
+const createTile = (value) => {
     const tile = document.createElement("div");
     tile.classList.add("tile");
     tile.dataset.value = value;
@@ -69,16 +69,14 @@ const initializeGame = () => {
     const gameBoard = document.getElementById("gameBoard");
     gameBoard.innerHTML = "";
 
-    const tiles = [
-        { value: tilesData[0].en, isEnglish: true },
-        { value: tilesData[0].pl, isEnglish: false },
-        { value: tilesData[1].en, isEnglish: true },
-        { value: tilesData[1].pl, isEnglish: false }
-    ];
+    const tiles = tilesData.flatMap(pair => [
+        pair.en,
+        pair.pl
+    ]);
 
     shuffleArray(tiles);
 
-    tiles.forEach(({ value }) => {
+    tiles.forEach(value => {
         const tile = createTile(value);
         gameBoard.appendChild(tile);
     });
