@@ -33,11 +33,15 @@ h1 {
     font-weight: bold;
     text-transform: capitalize;
     user-select: none;
+    transition: transform 0.3s, background-color 0.3s;
+    transform: rotateY(0);
+    perspective: 1000px;
 }
 
 .card.active {
     background-color: #fff;
     color: #0073e6;
+    transform: rotateY(180deg);
 }
 
 .card.matched {
@@ -54,6 +58,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 button:hover {
