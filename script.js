@@ -44,6 +44,8 @@ function checkMatch() {
     if (firstCard.dataset.value === secondCard.dataset.value) {
         firstCard.classList.add('matched');
         secondCard.classList.add('matched');
+        firstCard.removeEventListener('click', flipCard); // Disable further clicks
+        secondCard.removeEventListener('click', flipCard); // Disable further clicks
         resetTurn();
     } else {
         setTimeout(() => {
