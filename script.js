@@ -1,6 +1,7 @@
 const tilesData = [
-    { en: "consistent", pl: "konsekwentny" },
-    { en: "tenacious", pl: "wytrwały" }
+    { en: "consistent", pl: "spójny" },
+    { en: "tenacious", pl: "wytrwały" },
+    { en: "girly", pl: "dziewczęca" }
 ];
 
 let firstTile = null;
