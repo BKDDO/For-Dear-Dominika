@@ -12,18 +12,19 @@ body {
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(5, 120px); /* 5 kolumn */
-    grid-template-rows: repeat(6, 120px); /* 6 wierszy */
-    gap: 20px; /* Odstępy między kafelkami */
+    grid-template-columns: repeat(5, 1fr); /* Domyślnie 5 kolumn */
+    grid-gap: 20px; /* Odstępy między kafelkami */
     justify-content: center; /* Wyśrodkowanie planszy poziomo */
     align-items: center; /* Wyśrodkowanie planszy pionowo */
-    transform: scale(0.7); /* Skalowanie do 70% rozmiaru */
-    transform-origin: center; /* Skala względem środka planszy */
+    width: 100%; /* Plansza dopasowuje się do szerokości ekranu */
+    max-width: 600px; /* Maksymalna szerokość planszy */
+    padding: 10px; /* Odstępy wokół planszy */
+    box-sizing: border-box; /* Uwzględnia padding w szerokości */
 }
 
 .tile {
-    width: 120px; /* Szerokość kafelka */
-    height: 120px; /* Wysokość kafelka */
+    width: 100%; /* Kafelki zajmują przestrzeń w kolumnach */
+    aspect-ratio: 1; /* Kafelki zawsze są kwadratowe */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,8 +51,7 @@ body {
 
 .controls {
     margin-top: 20px; /* Odstęp od planszy gry */
-    transform: scale(0.7); /* Skalowanie przycisków razem z planszą */
-    transform-origin: center; /* Skala względem środka przycisków */
+    text-align: center; /* Wyśrodkowanie przycisków */
 }
 
 .controls button {
@@ -66,4 +66,29 @@ body {
 
 .controls button:hover {
     background-color: #0056b3; /* Kolor tła przycisku po najechaniu */
+}
+
+/* Responsywność */
+@media (max-width: 768px) { /* Tablety i mniejsze ekrany */
+    .game-board {
+        grid-template-columns: repeat(4, 1fr); /* 4 kolumny */
+    }
+}
+
+@media (max-width: 480px) { /* Telefony */
+    .game-board {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolumny */
+    }
+    .tile {
+        font-size: 12px; /* Mniejszy tekst */
+    }
+}
+
+@media (max-width: 360px) { /* Bardzo małe telefony */
+    .game-board {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolumny */
+    }
+    .tile {
+        font-size: 10px; /* Jeszcze mniejszy tekst */
+    }
 }
