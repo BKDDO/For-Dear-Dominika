@@ -1,12 +1,12 @@
 const tilesData = [
-    { en: "consistent", pl: "konsekwentny" },
-    { en: "tenacious", pl: "wytrwały" },
-    { en: "girly", pl: "dziewczęca" },
-    { en: "poetic", pl: "poetycki" },
-    { en: "narrative", pl: "narracyjny" },
-    { en: "rhythm", pl: "rytm" },
-    { en: "lyric", pl: "tekst piosenki" },
-    { en: "pride", pl: "duma" }
+    { en: "receipt", pl: "rachunek" },
+    { en: "contain", pl: "zawierać" },
+    { en: "figure out", pl: "domyślić się" },
+    { en: "hang out", pl: "spędzać czas" },
+    { en: "admire", pl: "podziwiać" },
+    { en: "minority", pl: "mniejszość" },
+    { en: "pretend", pl: "udawać" },
+    { en: "shelter", pl: "schronienie" }
 ];
 
 
